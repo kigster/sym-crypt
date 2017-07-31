@@ -1,6 +1,6 @@
 module Sym
   module Crypt
-  VERSION     = '0.1.0'
+  VERSION     = '1.0.0'
   DESCRIPTION = <<-eof
 sym-crypt is a core encryption module for the symmetric encryption app 
 (and a corresponding gem) "sym", and contains the main base serialization, 
