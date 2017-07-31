@@ -19,10 +19,13 @@
 The `sym-crypt` core library offers simple wrappers around OpenSSL with the following features:
 
  * Symmetric data encryption with:
-   * the Cipher `AES-256-cBC` used by the US Government
-   * 256-bit private key, that
-     *  can be generated and is a *base64-encoded* string about 45 characters long. The *decoded* key is always 32 characters (or 256 bytes) long.
-using `memcached` or using a `dRB` server
+   1. A generated or provided 256-bit key:
+       * the Cipher `AES-256-cBC` used by the US Government
+       * The generated key is a *base64-encoded* string of about 45 characters long. The *decoded* key is always 32 characters (or 256 bytes) long.
+   2. A user-provided password:
+       * the Cipher `AES-256-cBC` used by the US Government
+       * 256-bit private key, that can be automatically generated
+       * The generated key is a *base64-encoded* string of about 45    
  * Data handling:
    * Automatic compression of the data upon encryption
    * Automatic base64 encryption to make all encrypted strings fit onto a single line.
