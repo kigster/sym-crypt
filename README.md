@@ -72,7 +72,7 @@ class SensitiveStuff < Struct.new(:password)
   end
 
   def sensitive_value
-    decr(@sensitive_value, password)
+    decr_password(@sensitive_value, password)
   end
 end
 ```
