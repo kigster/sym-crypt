@@ -1,3 +1,5 @@
+require 'singleton'
+require 'sym/configurable'
 module Sym
   module Crypt
     # This class encapsulates application configuration, and exports
@@ -22,23 +24,14 @@ module Sym
     #       end
 
     class Configuration
-      class << self
-        attr_accessor :config
 
-        def configure
-          self.config ||= Configuration.new
-          yield config if block_given?
-        end
+      attr_accessor :data_cipher,
+                    :password_cipher,
+                    :private_key_cipher,
+                    :compression_enabled,
+                    :compression_level
 
-        def property(name)
-          self.config.send(name)
-        end
-      end
-
-      # See file +lib/sym/crypt.rb+ where these values are defined.
-
-      attr_accessor :data_cipher, :password_cipher, :private_key_cipher
-      attr_accessor :compression_enabled, :compression_level
+      include Sym::Configurable
     end
   end
 end
