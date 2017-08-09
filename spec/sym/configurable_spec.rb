@@ -7,6 +7,10 @@ module Sym
     include Sym::Configurable
   end
 
+  class Popo < Moofie
+    attr_accessor :meow
+  end
+
   RSpec.describe 'Sym::Configurable' do
     subject(:moofie_class) { Sym::Moofie }
     describe 'is a Singleton and a Sym::Configurable' do
@@ -29,6 +33,29 @@ module Sym
         it 'can be used to access attribute' do
           expect(moofie_class.property(:tail)).to eq(:bushy)
         end
+      end
+    end
+
+    describe 'sub-classes of the main config' do
+      subject(:popo) { Sym::Popo.config }
+
+      its(:class) { should eq(Sym::Popo) }
+      its(:meow) { should be_nil }
+
+      describe 'subclass accessors' do
+        before { Sym::Popo.configure { |p| p.meow = :whiny } }
+        its(:meow) { should eq :whiny }
+        after { Sym::Popo.configure { |p| p.meow = nil } }
+      end
+
+      it 'should not be the same as the superclass' do
+        expect(Sym::Popo.config).not_to eq(Sym::Moofie.config)
+
+        expect(Sym::Moofie.config).to respond_to(:tail)
+        expect(Sym::Popo.config).to respond_to(:tail)
+
+        expect(Sym::Moofie.config).not_to respond_to(:meow)
+        expect(Sym::Popo.config).to respond_to(:meow)
       end
     end
   end

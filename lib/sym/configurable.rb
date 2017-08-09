@@ -23,6 +23,9 @@ module Sym
       def property(prop_name)
         config.send(prop_name)
       end
+
+      alias_method :prop, :property
+      alias_method :[], :property
     end
   end
 end

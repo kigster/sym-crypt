@@ -24,6 +24,7 @@ module Sym
     #       end
 
     class Configuration
+      include Sym::Configurable
 
       attr_accessor :data_cipher,
                     :password_cipher,
@@ -31,7 +32,6 @@ module Sym
                     :compression_enabled,
                     :compression_level
 
-      include Sym::Configurable
     end
   end
 end
