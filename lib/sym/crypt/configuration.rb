@@ -1,5 +1,6 @@
 require 'singleton'
 require 'sym/configurable'
+require 'ostruct'
 module Sym
   module Crypt
     # This class encapsulates application configuration, and exports
@@ -23,15 +24,27 @@ module Sym
     #         config.compression_level        = Zlib::BEST_COMPRESSION
     #       end
 
-    class Configuration
+    class Configuration < OpenStruct
+
       include Sym::Configurable
 
-      attr_accessor :data_cipher,
-                    :password_cipher,
-                    :private_key_cipher,
-                    :compression_enabled,
-                    :compression_level
+      class << self
+        def defaults!
+          configure(&default_proc)
+        end
 
+        private
+
+        def default_proc
+          ->(config) do
+            config.password_cipher     = 'AES-128-CBC'
+            config.data_cipher         = 'AES-256-CBC'
+            config.private_key_cipher  = config.data_cipher
+            config.compression_enabled = true
+            config.compression_level   = Zlib::BEST_COMPRESSION
+          end
+        end
+      end
     end
   end
 end

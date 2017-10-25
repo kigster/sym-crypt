@@ -20,6 +20,18 @@ module Sym
         config
       end
 
+      def defaults!
+        [ self, *self.ancestors ].each do |klazz|
+          next unless klazz.is_a?(Class)
+          if klazz.const_defined?(:DEFAULTS)
+            default_proc = self.const_get(:DEFAULTS)
+            if default_proc.respond_to?(:call)
+              configure(&default_proc)
+            end
+          end
+        end
+      end
+
       def property(prop_name)
         config.send(prop_name)
       end

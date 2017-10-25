@@ -1,17 +1,12 @@
 require 'zlib'
 require 'logger'
 
-require 'sym/crypt/configuration'
 require 'sym/crypt/version'
 require 'sym/crypt/errors'
 
-Sym::Crypt::Configuration.configure do |config|
-  config.password_cipher          = 'AES-128-CBC'
-  config.data_cipher              = 'AES-256-CBC'
-  config.private_key_cipher       = config.data_cipher
-  config.compression_enabled      = true
-  config.compression_level        = Zlib::BEST_COMPRESSION
-end
+require 'sym/crypt/configuration'
+
+Sym::Crypt::Configuration.defaults!
 
 require 'sym/crypt/extensions/class_methods'
 require 'sym/crypt/extensions/instance_methods'
