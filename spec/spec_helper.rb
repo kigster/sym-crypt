@@ -12,8 +12,8 @@ require 'sym/crypt'
 require_relative 'support/contexts'
 require_relative 'support/shared_examples'
 
-RSpec.configure do |spec|
-  #
+::Dir.glob(::File.expand_path('../support/**/*.rb', __FILE__)).each do |file|
+  require(file)
 end
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)

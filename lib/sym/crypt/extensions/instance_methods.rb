@@ -1,5 +1,5 @@
 require 'sym/crypt'
-require 'sym/crypt/data'
+require 'sym/data'
 require 'sym/crypt/cipher_handler'
 require 'openssl'
 module Sym
@@ -17,7 +17,7 @@ module Sym
       # of various ciphers, by calling into the private +_encr+ and +_decr+
       # methods.f
       module InstanceMethods
-        include Sym::Crypt::Data
+        include Sym::Data
         include Sym::Crypt::CipherHandler
 
         # Expects key to be a base64 encoded key

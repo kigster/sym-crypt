@@ -6,14 +6,11 @@ class TestClass
   private_key TEST_KEY # Use ENV['SECRET'] in prod
 end
 
-
 RSpec.shared_context :test_instance do
   let(:instance) { TestClass.new }
   let(:test_class) { TestClass }
-  let(:test_instance) { instance }
   let(:key) { TestClass.create_private_key }
 end
-
 
 RSpec.shared_context :abc_classes do
   let(:c_private_key) { 'BOT+8SVzRKQSl5qecjB4tUW1ENakJQw8wojugYQnEHc=' }

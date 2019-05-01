@@ -3,10 +3,13 @@ cache: bundler
 env:
   CODECLIMATE_REPO_TOKEN=40b229d2d4857d67d832b6e0d5110537accb4e954961a8ce59beebf41e7d79b7
 rvm:
-- 2.2.7
-- 2.3.4
-- 2.4.1
-- jruby-9.1.9.0
+- 2.2.10
+- 2.3.8
+- 2.4.6
+- 2.5.5
+- 2.6.2
+- jruby-9.2.5.0
+- jruby-9.2.6.0
 notifications:
   email:
     recipients:
@@ -18,6 +21,5 @@ notifications:
 addons:
   code_climate:
     repo_token: 
-# regular test configuration
 after_success:
   - bundle exec codeclimate-test-reporter
