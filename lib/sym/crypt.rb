@@ -6,8 +6,6 @@ require 'sym/crypt/errors'
 
 require 'sym/crypt/configuration'
 
-Sym::Crypt::Configuration.defaults!
-
 require 'sym/crypt/extensions/class_methods'
 require 'sym/crypt/extensions/instance_methods'
 
@@ -73,16 +71,18 @@ module Sym
 
     def self.included(klass)
       klass.instance_eval do
+
         include ::Sym::Crypt::Extensions::InstanceMethods
         extend ::Sym::Crypt::Extensions::ClassMethods
+
         class << self
           def private_key(value = nil)
             if value
-              @private_key= value
+              @private_key = value
             elsif @private_key
               @private_key
             else
-              @private_key= self.create_private_key
+              @private_key = self.create_private_key
             end
             @private_key
           end
@@ -99,12 +99,8 @@ module Sym
 end
 
 Sym::Crypt::Configuration.configure do |config|
-  config.password_cipher          = 'AES-128-CBC'
-
-  config.data_cipher              = 'AES-256-CBC'
-  config.private_key_cipher       = config.data_cipher
-  config.compression_enabled      = true
-  config.compression_level        = Zlib::BEST_COMPRESSION
+  # config.password_cipher = 'AES-128-CBC'
+  # etc...
 end
 
 class Object

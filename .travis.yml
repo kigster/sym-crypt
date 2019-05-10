@@ -1,23 +1,20 @@
 language: ruby
 cache: bundler
-env:
-  CODECLIMATE_REPO_TOKEN=40b229d2d4857d67d832b6e0d5110537accb4e954961a8ce59beebf41e7d79b7
 rvm:
-- 2.2.7
-- 2.3.4
-- 2.4.1
-- jruby-9.1.9.0
-notifications:
-  email:
-    recipients:
-    on_success: change
-    on_failure: always
-  slack:
-    rooms:
-      secure: GcACCHmcmo99lYE5dgt2TmY4YIPMWr75q0Bkm4Lddegq/1eMXgcZDz00j8iHWtnveyJSjEUpZFQ9uyx+P7dvxT7D5gl43arKZEylS4vMRg9QRgZu7/ROrXbJtrUyKulFRUTdFrmOiK9nDKpAzlvLvMKC4kaQnn88Xtu9pYMU8y4n5fCtl29gZM9ZjVbrBBvV/SumnTDLla2oQ7oFgUZdZhQZ1qsevYknxNq4eIcvPDjbon+bovfsIISEVRSNo2C3yjO+mqWKed3jfuCA4taAZ8/aVVFEKURMH10HFms1CiC3lE/gF4YfBXsqKpjnB+bKjBcWox2FQrp96FulMEIfkKQrnuncO96o7MGHX9oNqKSMoycf3+SZFwNa+5Mfq7SBepbHYCoU7/ow31UTyStrc5idG19XzYgI85yjQHdzQN299Xf0O8cGf9q9qAu7rS7JlM3ekR+3rZYO+OxNYTF8rcW1fYIj6GKcbsV8BvuhAVQRFOsk/ibcIb2N7rGVd/ZbU4HAk3RE1ywt+XowinpIHktu2PQUPDNpgRQwM6xqZHO/7s9r7oW0ULmZCMLZ9CMKNjKzrQ9wfh90+v+FiEiUKsaVj4cCwF3PvhVYvxU2AKbCeHtSEb7K6to86+DYNoIKnGH1ryKoyCtyOTZpNMLGFt34Msv7WfEylhG+DpVMvkM=
-addons:
-  code_climate:
-    repo_token: 
-# regular test configuration
-after_success:
-  - bundle exec codeclimate-test-reporter
+- 2.2.10
+- 2.3.8
+- 2.4.6
+- 2.5.5
+- 2.6.2
+- jruby-9.2.5.0
+- jruby-9.2.6.0
+env:
+  global:
+    secure: MLkFJDFyxLetmt934cEHRq5u1RMJSZ+SOsSEYq8RtXTW+UjuiWndDn27rKEXRZq8njYKROIZHXtYPZqz7vxFe6oA7zar4cFh9c2/T8N7gp9ekeaSYN3yBP+HzzO0RQeZu69J2VWW0VOua9xrr1e4M1foiRUXeu4+bjqhZQH83TBEahTLnhe3x5UBMVnAAOVPC0R19zVHTESmKCpkFTk+kMCOD4K5BJ3R2NVfAY9KmPqRPh5/jFDkaeOYiMVal466gh/16rK9WbzarqODgJD3Xi32A68K7nbMmGAEbsltQuIxSwrOvP/xmjoikdM9uxxsqSpP+qlfWZL8TUn1EJwRmvXajCE9ak59SAiaieOqfKScouoSajNcTafHdD97y8iFCXqx2b4/QYCrG2RSn8obe0pmHTNQl4mYyGhcnDrmjku+8oGJT007K3Xv5zW6Mm78l2g5HjrbqeDmAQpz1RI6iZyEhOI5ujdv3+jBdIv6KWEaFD1mskHciGB0y0C2YzNa4gSkR5d81tsrsFhbefaq86s11MuDV71YNvTLiy4s3CMeqBSGbZFgEb6LNUsoTbXkRCejdigeg3ZXUpb372tEQhQEHnV7mE4JkXixav6Simfg39N1DPpP4GOpegvIL2SdN7cXpnBEbZ5WILi4ghpf0BnyOTdRjwyMigNCzgtY6NA=
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script: bundle exec rspec
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
