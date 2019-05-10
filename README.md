@@ -6,9 +6,8 @@
 [![Downloads](http://ruby-gem-downloads-badge.herokuapp.com/sym-crypt?type=total)](https://rubygems.org/gems/sym-crypt)
 
 [![Build Status](https://travis-ci.org/kigster/sym-crypt.svg?branch=master)](https://travis-ci.org/kigster/sym-crypt)
-[![Code Climate](https://codeclimate.com/github/kigster/sym-crypt/badges/gpa.svg)](https://codeclimate.com/github/kigster/sym-crypt)
-[![Test Coverage](https://codeclimate.com/github/kigster/sym-crypt/badges/coverage.svg)](https://codeclimate.com/github/kigster/sym-crypt/coverage)
-[![Issue Count](https://codeclimate.com/github/kigster/sym-crypt/badges/issue_count.svg)](https://codeclimate.com/github/kigster/sym-crypt)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3215796bda088851bfb7/maintainability)](https://codeclimate.com/github/kigster/sym-crypt/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/3215796bda088851bfb7/test_coverage)](https://codeclimate.com/github/kigster/sym-crypt/test_coverage)
 
 [![Gitter](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/kigster/sym)
 
