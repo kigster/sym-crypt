@@ -71,16 +71,18 @@ module Sym
 
     def self.included(klass)
       klass.instance_eval do
+
         include ::Sym::Crypt::Extensions::InstanceMethods
         extend ::Sym::Crypt::Extensions::ClassMethods
+
         class << self
           def private_key(value = nil)
             if value
-              @private_key= value
+              @private_key = value
             elsif @private_key
               @private_key
             else
-              @private_key= self.create_private_key
+              @private_key = self.create_private_key
             end
             @private_key
           end
